@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="./phpunit.bootstrap.php">
+
+    <testsuites>
+        <testsuite name="ConohaAPI">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./src</directory>
+            <exclude>
+                <directory suffix="Exception.php">./src/Common/Exceptions</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-clover" target="./build/logs/clover.xml" />
+    </logging>
+
+    <php>
+        <env name="IS_TEST" value="true" />
+    </php>
+
+</phpunit>

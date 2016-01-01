@@ -1,0 +1,11 @@
+.idea/
+.local/
+.test/
+build/
+docs/api/
+vendor/
+
+*.iml
+*.log
+*.phar
+composer.lock
