@@ -1,7 +1,6 @@
 CHAP - ConoHa API for PHP
 ===
 
-[![Join the chat at https://gitter.im/keika299/chap](https://badges.gitter.im/keika299/chap.svg)](https://gitter.im/keika299/chap?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/keika299/chap.svg?branch=master)](https://travis-ci.org/keika299/chap)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/keika299/chap/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/keika299/chap/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/keika299/chap/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/keika299/chap/?branch=master)
