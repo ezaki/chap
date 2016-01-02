@@ -60,7 +60,7 @@ class Request
             $options['headers'] = $this->headers;
         }
 
-        $client = filter_input(INPUT_ENV, 'IS_TEST') !== null ? new Client(['base_uri' => $this->baseURI]) : $this->createMockClient();
+        $client = getenv('IS_TEST') ? $this->createMockClient() : new Client(['base_uri' => $this->baseURI]);
 
         try {
             $response = $client->request($this->method, $this->uri, $options);
@@ -141,6 +141,18 @@ class Request
     public function setAccept($value)
     {
         $this->headers['Accept'] = $value;
+        return $this;
+    }
+
+    /**
+     * Set 'Content-Type' request header
+     *
+     * @param string $value
+     * @return $this
+     */
+    public function setContentType($value)
+    {
+        $this->headers['Content-Type'] = $value;
         return $this;
     }
 
