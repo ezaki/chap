@@ -1,11 +1,10 @@
 CHAP - ConoHa API for PHP
 ===
 
-[![Join the chat at https://gitter.im/keika299/chap](https://badges.gitter.im/keika299/chap.svg)](https://gitter.im/keika299/chap?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/keika299/chap.svg?branch=master)](https://travis-ci.org/keika299/chap)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/keika299/chap/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/keika299/chap/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/keika299/chap/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/keika299/chap/?branch=master)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/5f92f547-4541-4140-aa0c-83b5c5d6f1de/mini.png)](https://insight.sensiolabs.com/projects/5f92f547-4541-4140-aa0c-83b5c5d6f1de)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/9c244d33-386f-402a-bf09-7a5bd0b965f7/mini.png)](https://insight.sensiolabs.com/projects/9c244d33-386f-402a-bf09-7a5bd0b965f7)
 [![Join the chat at https://gitter.im/keika299/chap](https://badges.gitter.im/keika299/chap.svg)](https://gitter.im/keika299/chap?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 CHAP は ConoHa API のために作られた PHP 用ライブラリです。  
