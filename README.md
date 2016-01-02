@@ -31,7 +31,7 @@ Image Service             | Not yet.
 Network Service           | Not yet.
 Object Storage Service    | Not yet.
 Database Hosting Service  | Not yet.
-DNS Service               | Not yet.
+DNS Service               | Done! You can use it.
 Mail Hosting Service      | Not yet.
 
 ## Getting Started

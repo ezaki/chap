@@ -10,6 +10,12 @@ $client = new Conoha(array(
     'tenantId'=>'487727e3921d44e3bfe7ebb337bf085e'
 ));
 
-$accountService = $client->accountService();
+$dnsService = $client->dnsService();
 
-echo json_encode($accountService->getBillingInvoice('208110'));
+echo json_encode($dnsService->postDomain('example.com.',
+    'mail@example.com',
+    array(
+        'ttl' => 3600,
+        'description' => 'domain description here',
+        'gslb' => false
+    )));
