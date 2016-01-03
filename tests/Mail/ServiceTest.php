@@ -152,7 +152,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
     public function testDeleteEmail()
     {
         $object = $this->service->deleteEmail('email UUID');
-        $this->assertEquals('checkValue', $object->checkKey);
+        $this->assertNull($object);
     }
 
     public function testPutEmailPassword()
@@ -181,6 +181,12 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
         $object = $this->service->getMessageList('email UUID', array(
             'offset' => 0
         ));
+        $this->assertEquals('checkValue', $object->checkKey);
+    }
+
+    public function testGetMessage()
+    {
+        $object = $this->service->getMessage('email UUID', 'message UUID');
         $this->assertEquals('checkValue', $object->checkKey);
     }
 
@@ -217,7 +223,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
     public function testDeleteWebhook()
     {
         $object = $this->service->deleteWebhook('email UUID');
-        $this->assertEquals('checkValue', $object->checkKey);
+        $this->assertNull($object);
     }
 
     public function testGetWhiteList()
@@ -266,10 +272,10 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testGetForwardingList()
     {
-        $object = $this->service->getForwardingList('email UUID');
+        $object = $this->service->getForwardingList();
         $this->assertEquals('checkValue', $object->checkKey);
 
-        $object = $this->service->getForwardingList('email UUID', array(
+        $object = $this->service->getForwardingList(array(
             'offset' => 5
         ));
         $this->assertEquals('checkValue', $object->checkKey);
