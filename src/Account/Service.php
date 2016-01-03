@@ -192,7 +192,8 @@ class Service extends AbstractService
         $request = (new Request())
             ->setMethod('GET')
             ->setBaseURI($this->baseURI)
-            ->setURI('/v1/'.$this->client->getTenantId().'/billing-invoices'.$this->getOffsetAndLimitQuery($options))
+            ->setURI('/v1/'.$this->client->getTenantId().'/billing-invoices')
+            ->setQuery($options)
             ->setAccept('application/json')
             ->setToken($this->token->getToken());
 
@@ -246,7 +247,8 @@ class Service extends AbstractService
         $request = (new Request())
             ->setMethod('GET')
             ->setBaseURI($this->baseURI)
-            ->setURI('/v1/'.$this->client->getTenantId().'/notifications'.$this->getOffsetAndLimitQuery($options))
+            ->setURI('/v1/'.$this->client->getTenantId().'/notifications')
+            ->setQuery($options)
             ->setAccept('application/json')
             ->setToken($this->token->getToken());
 
@@ -328,7 +330,8 @@ class Service extends AbstractService
         $request = (new Request())
             ->setMethod('GET')
             ->setBaseURI($this->baseURI)
-            ->setURI('/v1/'.$this->client->getTenantId().'/object-storage/rrd/request'.$this->getDataRangeAndModeQuery($options))
+            ->setURI('/v1/'.$this->client->getTenantId().'/object-storage/rrd/request')
+            ->setQuery($options)
             ->setAccept('application/json')
             ->setToken($this->token->getToken());
 
@@ -355,70 +358,12 @@ class Service extends AbstractService
         $request = (new Request())
             ->setMethod('GET')
             ->setBaseURI($this->baseURI)
-            ->setURI('/v1/'.$this->client->getTenantId().'/object-storage/rrd/size'.$this->getDataRangeAndModeQuery($options))
+            ->setURI('/v1/'.$this->client->getTenantId().'/object-storage/rrd/size')
+            ->setQuery($options)
             ->setAccept('application/json')
             ->setToken($this->token->getToken());
 
         $response = $request->exec();
         return $response->getJson();
-    }
-
-    /**
-     * Get offset and limit query from options params.
-     *
-     * @param array $options
-     * @return string
-     */
-    private function getOffsetAndLimitQuery($options)
-    {
-        $optionQuery = '';
-
-        if (isset($options['offset'])) {
-            $optionQuery = '?offset='.$options['offset'];
-        }
-
-        if (isset($options['limit'])) {
-            if ($optionQuery === '') {
-                $optionQuery = '?limit='.$options['limit'];
-            }
-            else {
-                $optionQuery = $optionQuery.'&limit='.$options['limit'];
-            }
-        }
-
-        return $optionQuery;
-    }
-
-    /**
-     * Get data range and mode query from options params.
-     *
-     * @param array $options
-     * @return string
-     */
-    private function getDataRangeAndModeQuery($options)
-    {
-        $optionQuery = '';
-
-        if (isset($options['start_date_raw'])) {
-            $optionQuery = '?offset='.$options['start_date_raw'];
-        }
-        if (isset($options['end_date_raw'])) {
-            if ($optionQuery === '') {
-                $optionQuery = '?end_date_raw='.$options['end_date_raw'];
-            }
-            else {
-                $optionQuery = $optionQuery.'&end_date_raw='.$options['end_date_raw'];
-            }
-        }
-        if (isset($options['mode'])) {
-            if ($optionQuery === '') {
-                $optionQuery = '?mode='.$options['mode'];
-            }
-            else {
-                $optionQuery = $optionQuery.'&mode='.$options['mode'];
-            }
-        }
-
-        return $optionQuery;
     }
 }

@@ -68,12 +68,11 @@ class Service extends AbstractService
      */
     public function getDomainList($options = array())
     {
-        $optionQuery = isset($options['name']) ? '?name=' . $options['name'] : '';
-
         $request = (new Request())
             ->setMethod('GET')
             ->setBaseURI($this->baseURI)
-            ->setURI('/v1/domains'.$optionQuery)
+            ->setURI('/v1/domains')
+            ->setQuery($options)
             ->setAccept('application/json')
             ->setToken($this->token->getToken());
 
@@ -406,25 +405,17 @@ class Service extends AbstractService
 
     private function createDomainInfoArray($options)
     {
-        $optionArray = array();
-
-        if (isset($options['email'])) {
-            $optionArray['email'] = $options['email'];
-        }
-        if (isset($options['ttl'])) {
-            $optionArray['ttl'] = $options['ttl'];
-        }
-        if (isset($options['description'])) {
-            $optionArray['description'] = $options['description'];
-        }
-        if (isset($options['gslb']) && $options['gslb']) {
-            $optionArray['gslb'] = 1;
-        }
-        else {
-            $optionArray['gslb'] = 0;
+        if (!isset($options['gslb'])) {
+            return $options;
         }
 
-        return $optionArray;
+        if ($options['gslb']) {
+            $options['gslb'] = 1;
+            return $options;
+        }
+
+        $options['gslb'] = 0;
+        return $options;
     }
 
 }
