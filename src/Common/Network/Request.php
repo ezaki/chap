@@ -207,7 +207,6 @@ class Request
         }
 
         $this->query = mb_substr($query, 0, -1, "UTF-8");
-        echo $this->query;
 
         return $this;
     }
