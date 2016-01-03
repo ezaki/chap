@@ -15,9 +15,8 @@ use keika299\ConohaAPI\Conoha;
 class Cookies
 {
     /**
-     * @var Conoha
+     * @var array
      */
-    private $client;
     private $cookiesData;
 
     /**
@@ -27,7 +26,6 @@ class Cookies
      */
     public function __construct(Conoha $client)
     {
-        $this->client = $client;
         $this->cookiesData = $client->getCookiesData();
     }
 
