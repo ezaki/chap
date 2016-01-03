@@ -33,7 +33,7 @@ Network Service           | Not yet.
 Object Storage Service    | Not yet.
 Database Hosting Service  | Not yet.
 DNS Service               | Done! You can use it.
-Mail Hosting Service      | Not yet.
+Mail Hosting Service      | Done! You can use it.
 
 ## Getting Started
 
