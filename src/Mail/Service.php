@@ -14,4 +14,7 @@ use keika299\ConohaAPI\Common\Service\AbstractService;
 class Service extends AbstractService
 {
 
+    public function getVersionInfo()
+    {
+    }
 }
