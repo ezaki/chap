@@ -110,7 +110,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testDeleteDomain()
     {
-        $object = $this->service->deleteService('service UUID');
+        $object = $this->service->deleteDomain('service UUID');
         $this->assertNull($object);
     }
 
@@ -145,7 +145,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testEmailInfo()
     {
-        $object = $this->service->getEmailList('email UUID');
+        $object = $this->service->getEmailInfo('email UUID');
         $this->assertEquals('checkValue', $object->checkKey);
     }
 
@@ -157,7 +157,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testPutEmailPassword()
     {
-        $object = $this->service->getEmailList('email UUID', 'new password');
+        $object = $this->service->putEmailPassword('email UUID', 'new password');
         $this->assertEquals('checkValue', $object->checkKey);
     }
 
@@ -192,7 +192,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testDeleteMessage()
     {
-        $object = $this->service->deleteMessage('email UUID', 'service UUID');
+        $object = $this->service->deleteMessage('email UUID', 'message UUID');
         $this->assertNull($object);
     }
 
@@ -222,10 +222,10 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testGetWhiteList()
     {
-        $object = $this->service->getWhitelist('email UUID');
+        $object = $this->service->getWhiteList('email UUID');
         $this->assertEquals('checkValue', $object->checkKey);
 
-        $object = $this->service->getWhitelist('email UUID', array(
+        $object = $this->service->getWhiteList('email UUID', array(
             'offset' => 5
         ));
         $this->assertEquals('checkValue', $object->checkKey);
@@ -233,7 +233,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testPutWhiteList()
     {
-        $object = $this->service->putWhitelist('email UUID', array(
+        $object = $this->service->putWhiteList('email UUID', array(
             'mail@example.com', 'mail2@example.com'
         ));
         $this->assertEquals('checkValue', $object->checkKey);
@@ -241,10 +241,10 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testGetBlackList()
     {
-        $object = $this->service->getBlacklist('email UUID');
+        $object = $this->service->getBlackList('email UUID');
         $this->assertEquals('checkValue', $object->checkKey);
 
-        $object = $this->service->getBlacklist('email UUID', array(
+        $object = $this->service->getBlackList('email UUID', array(
             'offset' => 5
         ));
         $this->assertEquals('checkValue', $object->checkKey);
@@ -252,7 +252,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testPutBlackList()
     {
-        $object = $this->service->putBlacklist('email UUID', array(
+        $object = $this->service->putBlackList('email UUID', array(
             'mail@example.com', 'mail2@example.com'
         ));
         $this->assertEquals('checkValue', $object->checkKey);
