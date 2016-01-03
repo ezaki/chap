@@ -1,6 +1,6 @@
 <?php
 
-namespace keika299\ConohaAPI\Common;
+namespace keika299\ConohaAPI\Common\DataStore;
 
 
 use keika299\ConohaAPI\Conoha;
@@ -32,12 +32,15 @@ class Cookies
     }
 
     /**
-     * Set generated token.
+     * Save token.
+     *
+     * @param string $token
+     * @return null
      */
-    public function setCurrentToken()
+    public function saveToken($token)
     {
         if ($this->isStoreTokenCookie()) {
-            setcookie($this->getStoreTokenCookieName(), $this->client->getToken());
+            setcookie($this->getStoreTokenCookieName(), $token);
         }
     }
 
@@ -48,9 +51,13 @@ class Cookies
      *
      * @return string|null
      */
-    public function getStoredToken()
+    public function loadToken()
     {
-        return filter_input(INPUT_COOKIE, $this->getStoreTokenCookieName()) !== null ? filter_input(INPUT_COOKIE, $this->getStoreTokenCookieName()) : null;
+        if ($this->isStoreTokenCookie()){
+            return filter_input(INPUT_COOKIE, $this->getStoreTokenCookieName());
+        }
+
+        return null;
     }
 
     /**
@@ -72,6 +79,10 @@ class Cookies
      */
     public function getStoreTokenCookieName()
     {
-        return isset($this->cookiesData['storeTokenCookieName']) ? $this->cookiesData['storeTokenCookieName'] : 'ConohaAPIToken';
+        if (isset($this->cookiesData['storeTokenCookieName'])) {
+            return $this->cookiesData['storeTokenCookieName'];
+        }
+
+        return 'ConohaAPIToken';
     }
 }

@@ -51,7 +51,7 @@ class Service extends AbstractService
             ->setBaseURI($this->baseURI)
             ->setURI('/v1/domains/'. $domainId .'/servers')
             ->setAccept('application/json')
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $response = $request->exec();
         return $response->getJson();
@@ -75,7 +75,7 @@ class Service extends AbstractService
             ->setBaseURI($this->baseURI)
             ->setURI('/v1/domains'.$optionQuery)
             ->setAccept('application/json')
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $response = $request->exec();
         return $response->getJson();
@@ -143,7 +143,7 @@ class Service extends AbstractService
             ->setMethod('DELETE')
             ->setBaseURI($this->baseURI)
             ->setURI('/v1/domains/' . $domainId)
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $request->exec();
         return null;
@@ -169,7 +169,7 @@ class Service extends AbstractService
             ->setURI('/v1/domains/' . $domainId)
             ->setAccept('application/json')
             ->setContentType('application/json')
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $response = $request->exec();
         return $response->getJson();
@@ -223,7 +223,7 @@ class Service extends AbstractService
             ->setBaseURI($this->baseURI)
             ->setURI('/v1/domains/'. $domainId .'/records')
             ->setAccept('application/json')
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $response = $request->exec();
         return $response->getJson();
@@ -296,7 +296,7 @@ class Service extends AbstractService
             ->setMethod('DELETE')
             ->setBaseURI($this->baseURI)
             ->setURI('/v1/domains/'. $domainId .'/records/'. $recordId)
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $request->exec();
         return null;
@@ -322,7 +322,7 @@ class Service extends AbstractService
             ->setBaseURI($this->baseURI)
             ->setURI('/v1/domains/'. $domainId .'/records/'. $recordId)
             ->setAccept('application/json')
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $response = $request->exec();
         return $response->getJson();
@@ -398,7 +398,7 @@ class Service extends AbstractService
             ->setBaseURI($this->baseURI)
             ->setURI('/v2/zones/'. $domainId)
             ->setAccept('text/dns')
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $response = $request->exec();
         return $response->getBody();

@@ -18,7 +18,6 @@ class Conoha
      * @var array
      */
     private $data;
-    private $cookies;
 
     /**
      * Conoha constructor.
@@ -50,21 +49,8 @@ class Conoha
             $this->data['cookies'] = array();
         }
 
-        $this->cookies = new ConohaAPI\Common\Cookies($this);
-
-        if (!isset($this->data['token'])) {
-            if ($this->cookies->getStoredToken() !== null) {
-                $this->data['token'] = $this->cookies->getStoredToken();
-            }
-            elseif(isset($data['username']) && isset($data['password'])) {
-                $this->data['token'] = $this->updateToken();
-            }
-        }
-        elseif(isset($this->data['cookies']['isStoreTokenCookie'])
-            && $this->data['cookies']['isStoreTokenCookie']
-            && $this->cookies->getStoredToken() === null) {
-            $this->cookies->setCurrentToken();
-        }
+        $token = new ConohaAPI\Common\DataStore\Token($this);
+        $token->initToken();
     }
 
     /**
@@ -98,33 +84,27 @@ class Conoha
     }
 
     /**
-     * Refresh token.
-     *
-     * This function can use already set username and user password.
-     *
-     * @return string
-     * @throws \Exception
-     */
-    public function updateToken()
-    {
-        if ($this->getUsername() === null || $this->getUserPassword() === null) {
-            throw new \Exception('Cannot refresh token.');
-        }
-        $this->data['token'] = $this->identityService()->getToken()->access->token->id;
-
-        $this->cookies->setCurrentToken();
-
-        return $this->getToken();
-    }
-
-    /**
      * Get token.
      *
      * @return string|null
      */
     public function getToken()
     {
-        return $this->data['token'];
+        if (isset($this->data['token'])) {
+            return $this->data['token'];
+        }
+
+        return null;
+    }
+
+    /**
+     * Set token.
+     *
+     * @param string $token
+     */
+    public function setToken($token)
+    {
+        $this->data['token'] = $token;
     }
 
     /**

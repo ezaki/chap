@@ -48,11 +48,6 @@ class ConohaTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('487727e3921d44e3bfe7ebb337bf085e', $this->client->getTenantId());
     }
 
-    public function testUpdateToken()
-    {
-        $this->assertEquals('sample00d88246078f2bexample788f7', $this->client->updateToken());
-    }
-
     public function testGetToken()
     {
         $this->assertEquals('sample00d88246078f2bexample788f7', $this->client->getToken());

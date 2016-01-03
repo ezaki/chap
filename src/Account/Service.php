@@ -50,7 +50,7 @@ class Service extends AbstractService
             ->setBaseURI($this->baseURI)
             ->setURI('/v1')
             ->setAccept('application/json')
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $response = $request->exec();
         return $response->getJson();
@@ -71,7 +71,7 @@ class Service extends AbstractService
             ->setBaseURI($this->baseURI)
             ->setURI('/v1/'.$this->client->getTenantId().'/order-items')
             ->setAccept('application/json')
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $response = $request->exec();
         return $response->getJson();
@@ -95,7 +95,7 @@ class Service extends AbstractService
             ->setBaseURI($this->baseURI)
             ->setURI('/v1/'.$this->client->getTenantId().'/order-items/'.$itemId)
             ->setAccept('application/json')
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $response = $request->exec();
         return $response->getJson();
@@ -122,7 +122,7 @@ class Service extends AbstractService
             ->setBaseURI($this->baseURI)
             ->setURI('/v1/'.$this->client->getTenantId().'/product-items'. ($serviceName !== null ? '?service_name='.$serviceName : ''))
             ->setAccept('application/json')
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $response = $request->exec();
         return $response->getJson();
@@ -143,7 +143,7 @@ class Service extends AbstractService
             ->setBaseURI($this->baseURI)
             ->setURI('/v1/'.$this->client->getTenantId().'/payment-history')
             ->setAccept('application/json')
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $response = $request->exec();
         return $response->getJson();
@@ -164,7 +164,7 @@ class Service extends AbstractService
             ->setBaseURI($this->baseURI)
             ->setURI('/v1/'.$this->client->getTenantId().'/payment-summary')
             ->setAccept('application/json')
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $response = $request->exec();
         return $response->getJson();
@@ -194,7 +194,7 @@ class Service extends AbstractService
             ->setBaseURI($this->baseURI)
             ->setURI('/v1/'.$this->client->getTenantId().'/billing-invoices'.$this->getOffsetAndLimitQuery($options))
             ->setAccept('application/json')
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $response = $request->exec();
         return $response->getJson();
@@ -218,7 +218,7 @@ class Service extends AbstractService
             ->setBaseURI($this->baseURI)
             ->setURI('/v1/'.$this->client->getTenantId().'/billing-invoices/'.$invoiceId)
             ->setAccept('application/json')
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $response = $request->exec();
         return $response->getJson();
@@ -248,7 +248,7 @@ class Service extends AbstractService
             ->setBaseURI($this->baseURI)
             ->setURI('/v1/'.$this->client->getTenantId().'/notifications'.$this->getOffsetAndLimitQuery($options))
             ->setAccept('application/json')
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $response = $request->exec();
         return $response->getJson();
@@ -272,7 +272,7 @@ class Service extends AbstractService
             ->setBaseURI($this->baseURI)
             ->setURI('/v1/'.$this->client->getTenantId().'/notifications/'.$notificationCode)
             ->setAccept('application/json')
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $response = $request->exec();
         return $response->getJson();
@@ -330,7 +330,7 @@ class Service extends AbstractService
             ->setBaseURI($this->baseURI)
             ->setURI('/v1/'.$this->client->getTenantId().'/object-storage/rrd/request'.$this->getDataRangeAndModeQuery($options))
             ->setAccept('application/json')
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $response = $request->exec();
         return $response->getJson();
@@ -357,7 +357,7 @@ class Service extends AbstractService
             ->setBaseURI($this->baseURI)
             ->setURI('/v1/'.$this->client->getTenantId().'/object-storage/rrd/size'.$this->getDataRangeAndModeQuery($options))
             ->setAccept('application/json')
-            ->setToken($this->client->getToken());
+            ->setToken($this->token->getToken());
 
         $response = $request->exec();
         return $response->getJson();
