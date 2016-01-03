@@ -23,6 +23,7 @@ class Request
     private $headers;
     private $body;
     private $json;
+    private $query;
 
     /**
      * Request constructor.
@@ -35,6 +36,7 @@ class Request
         $this->headers = array();
         $this->body = null;
         $this->json = null;
+        $this->query = '';
     }
 
     /**
@@ -63,7 +65,7 @@ class Request
         $client = getenv('IS_TEST') ? $this->createMockClient() : new Client(['base_uri' => $this->baseURI]);
 
         try {
-            $response = $client->request($this->method, $this->uri, $options);
+            $response = $client->request($this->method, $this->uri.$this->query, $options);
             return new Response($response);
         }
         catch (\Exception $e) {
@@ -181,6 +183,32 @@ class Request
     public function setJson(array $array)
     {
         $this->json = $array;
+        return $this;
+    }
+
+    /**
+     * Set request URI query.
+     *
+     * $array have to be associative array.
+     *
+     * @param array $array
+     * @return $this
+     */
+    public function setQuery(array $array)
+    {
+        if (sizeof($array) === 0) {
+            return $this;
+        }
+
+        $query = '?';
+
+        foreach ($array as $item => $value) {
+            $query .= $item . '=' . $value . '&';
+        }
+
+        $this->query = mb_substr($query, 0, -1, "UTF-8");
+        echo $this->query;
+
         return $this;
     }
 
