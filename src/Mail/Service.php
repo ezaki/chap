@@ -37,20 +37,49 @@ class Service extends AbstractService
      * Get version detail.
      *
      * @return mixed
+     * @throws \keika299\ConohaAPI\Common\Exceptions\IConohaAPIException
      */
     public function getVersionDetail()
     {
-        return null;
+        $request = (new Request())
+            ->setMethod('GET')
+            ->setBaseURI($this->baseURI)
+            ->setURI('/v1')
+            ->setAccept('application/json');
+
+        $response = $request->exec();
+        return $response->getJson();
     }
 
     public function postService($serviceName, $subDomain)
     {
-        return null;
+        $data = array(
+            'service_name' => $serviceName,
+            'default_sub_domain' => $subDomain
+        );
+
+        $request = (new Request())
+            ->setMethod('POST')
+            ->setBaseURI($this->baseURI)
+            ->setURI('/v1/services')
+            ->setAccept('application/json')
+            ->setContentType('application/json')
+            ->setJson($data);
+
+        $response = $request->exec();
+        return $response->getJson();
     }
 
     public function getServiceList($options = array())
     {
-        return null;
+        $request = (new Request())
+            ->setMethod('GET')
+            ->setBaseURI($this->baseURI)
+            ->setURI('/v1/services')
+            ->setAccept('application/json');
+
+        $response = $request->exec();
+        return $response->getJson();
     }
 
     public function getServiceInfo($serviceId)
@@ -222,6 +251,4 @@ class Service extends AbstractService
     {
         return null;
     }
-
-
 }
