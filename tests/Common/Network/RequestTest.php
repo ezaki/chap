@@ -62,6 +62,11 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\keika299\ConohaAPI\Common\Network\Request', $this->request->setJson(array('foo' => 'bar')));
     }
 
+    public function testSetQuery()
+    {
+        $this->assertInstanceOf('\keika299\ConohaAPI\Common\Network\Request', $this->request->setQuery(array('foo' => 'bar')));
+    }
+
     public function testSetToken()
     {
         $this->assertInstanceOf('\keika299\ConohaAPI\Common\Network\Request', $this->request->setToken('sample00d88246078f2bexample788f7'));
