@@ -68,27 +68,35 @@ class Service extends AbstractService
      */
     public function getToken()
     {
-        $requestArray = [
-            "auth" => [
-                "passwordCredentials" => [
-                    "username" => $this->client->getUsername(),
-                    "password" => $this->client->getUserPassword()
-                ]
-            ]
-        ];
-
-        if ($this->client->getTenantID() !== null) {
-            $requestArray["auth"]["tenantId"] = $this->client->getTenantID();
-        }
-
         $request = new Request();
         $request
             ->setMethod('POST')
             ->setBaseURI($this->baseURI)
             ->setURI('/v2.0/tokens')
             ->setAccept('application/json')
-            ->setJson($requestArray);
+            ->setJson($this->getTokenRequestArray());
         $response = $request->exec();
         return $response->getJson();
+    }
+
+    /**
+     * @return array
+     */
+    private function getTokenRequestArray()
+    {
+        $requestArray = array(
+            'auth' => [
+                'passwordCredentials' => [
+                    'username' => $this->client->getUsername(),
+                    'password' => $this->client->getUserPassword()
+                ]
+            ]
+        );
+
+        if ($this->client->getTenantID() !== null) {
+            $requestArray["auth"]["tenantId"] = $this->client->getTenantID();
+        }
+
+        return $requestArray;
     }
 }

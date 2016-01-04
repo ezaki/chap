@@ -4,7 +4,7 @@ namespace keika299\ConohaAPI\Common\Exceptions\Network;
 
 
 use keika299\ConohaAPI\Common\Exceptions\ConohaAPIException;
-use GuzzleHttp\Exception\RequestException as GuzzleHttpReqquestException;
+use GuzzleHttp\Exception\RequestException as GuzzleHttpRequestException;
 use keika299\ConohaAPI\Common\Exceptions\Network\Client;
 
 class ExceptionFactory
@@ -17,27 +17,37 @@ class ExceptionFactory
      * @param \Exception $exception
      * @return \keika299\ConohaAPI\Common\Exceptions\IConohaAPIException
      */
-    public static function build(\Exception $exception = null)
+    public static function build(\Exception $exception)
     {
-        if ($exception instanceof GuzzleHttpReqquestException) {
-            switch ($exception->getCode()) {
-                case 400:
-                    return new Client\BadRequestException($exception);
-                case 401:
-                    return new Client\UnauthorizedException($exception);
-                case 403:
-                    return new Client\ForbiddenException($exception);
-                case 404:
-                    return new Client\NotFoundException($exception);
-                case 405:
-                    return new Client\MethodNotAllowedException($exception);
-                case 406:
-                    return new Client\NotAcceptableException($exception);
-                default:
-                    return new RequestException($exception);
+        if ($exception instanceof GuzzleHttpRequestException) {
+            return ExceptionFactory::createClientException($exception);
+        }
+
+        return new ConohaAPIException('Conoha API Exception', 0, $exception);
+    }
+
+    /**
+     * @param GuzzleHttpRequestException $exception
+     * @return Client\ClientException
+     */
+    private static function createClientException(GuzzleHttpRequestException $exception)
+    {
+        $exceptionArray = array(
+            400 => 'BadRequest',
+            401 => 'Unauthorized',
+            403 => 'Forbidden',
+            404 => 'NotFound',
+            405 => 'MethodNotAllowed',
+            406 => 'NotAcceptable'
+        );
+
+        foreach ($exceptionArray as $item => $value) {
+            if ($item === $exception->getCode()) {
+                $exceptionName = __NAMESPACE__ . '\Client\\' . $value . 'Exception';
+                return new $exceptionName($exception);
             }
         }
 
-        return $exception !== null ? $exception : new ConohaAPIException();
+        return new RequestException($exception);
     }
 }

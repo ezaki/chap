@@ -40,9 +40,5 @@ class ExceptionFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(
             '\keika299\ConohaAPI\Common\Exceptions\Network\RequestException',
             ExceptionFactory::build(RequestException::create($request, new Response('499'))));
-
-        $this->assertInstanceOf(
-            '\keika299\ConohaAPI\Common\Exceptions\ConohaAPIException',
-            ExceptionFactory::build());
     }
 }

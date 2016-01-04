@@ -21,8 +21,7 @@ class Request
     private $method;
     private $uri;
     private $headers;
-    private $body;
-    private $json;
+    private $options;
     private $query;
 
     /**
@@ -34,8 +33,7 @@ class Request
         $this->method = 'GET';
         $this->uri = '';
         $this->headers = array();
-        $this->body = null;
-        $this->json = null;
+        $this->options = array();
         $this->query = '';
     }
 
@@ -50,22 +48,14 @@ class Request
      */
     public function exec()
     {
-        $options = array();
-
-        if ($this->body !== null) {
-            $options['body'] = $this->body;
-        }
-        if ($this->json !== null) {
-            $options['json'] = $this->json;
-        }
         if (0 < count($this->headers)) {
-            $options['headers'] = $this->headers;
+            $this->options['headers'] = $this->headers;
         }
 
-        $client = getenv('IS_TEST') ? $this->createMockClient() : new Client(['base_uri' => $this->baseURI]);
+        $client = $this->getClient();
 
         try {
-            $response = $client->request($this->method, $this->uri.$this->query, $options);
+            $response = $client->request($this->method, $this->uri.$this->query, $this->options);
             return new Response($response);
         }
         catch (\Exception $e) {
@@ -168,7 +158,7 @@ class Request
      */
     public function setBody($body)
     {
-        $this->body = $body;
+        $this->options['body'] = $body;
         return $this;
     }
 
@@ -182,7 +172,7 @@ class Request
      */
     public function setJson(array $array)
     {
-        $this->json = $array;
+        $this->options['json'] = $array;
         return $this;
     }
 
@@ -223,6 +213,17 @@ class Request
         return $this;
     }
 
+    /**
+     * @return Client
+     */
+    private function getClient()
+    {
+        return getenv('IS_TEST') ? $this->createMockClient() : new Client(['base_uri' => $this->baseURI]);
+    }
+
+    /**
+     * @return Client
+     */
     private function createMockClient()
     {
         $body = '{"checkKey": "checkValue", "access": {"token": {"id": "sample00d88246078f2bexample788f7"}}}';
