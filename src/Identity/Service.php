@@ -15,27 +15,6 @@ use keika299\ConohaAPI\Common\Network\Request;
 class Service extends AbstractService
 {
     /**
-     * Get version information.
-     *
-     * See https://www.conoha.jp/docs/identity-get_version_list.html
-     *
-     * @return mixed
-     * @throws \keika299\ConohaAPI\Common\Exceptions\IConohaAPIException
-     */
-    public function getVersionInfo()
-    {
-        $request = new Request();
-        $request
-            ->setMethod('GET')
-            ->setBaseURI($this->baseURI)
-            ->setURI('/')
-            ->setAccept('application/json');
-
-        $response = $request->exec();
-        return $response->getJson();
-    }
-
-    /**
      * Get version detail.
      *
      * See https://www.conoha.jp/docs/identity-get_version_detail.html

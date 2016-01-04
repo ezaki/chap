@@ -47,4 +47,22 @@ abstract class AbstractService
         $request->setToken($this->token->getToken());
         return $request->exec();
     }
+
+    /**
+     * Get version info.
+     *
+     * @return mixed
+     * @throws \keika299\ConohaAPI\Common\Exceptions\IConohaAPIException
+     */
+    public function getVersionInfo()
+    {
+        $request = (new Request())
+            ->setMethod('GET')
+            ->setBaseURI($this->baseURI)
+            ->setURI('/')
+            ->setAccept('application/json');
+
+        $response = $request->exec();
+        return $response->getJson();
+    }
 }

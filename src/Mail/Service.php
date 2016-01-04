@@ -14,27 +14,6 @@ use keika299\ConohaAPI\Common\Service\AbstractService;
  */
 class Service extends AbstractService
 {
-
-    /**
-     * Get version info.
-     *
-     * See https://www.conoha.jp/docs/paas-mail-get-version-list.html
-     *
-     * @return mixed
-     * @throws \keika299\ConohaAPI\Common\Exceptions\IConohaAPIException
-     */
-    public function getVersionInfo()
-    {
-        $request = (new Request())
-            ->setMethod('GET')
-            ->setBaseURI($this->baseURI)
-            ->setURI('/')
-            ->setAccept('application/json');
-
-        $response = $request->exec();
-        return $response->getJson();
-    }
-
     /**
      * Get version detail.
      *

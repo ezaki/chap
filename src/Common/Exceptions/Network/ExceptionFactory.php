@@ -20,7 +20,7 @@ class ExceptionFactory
     public static function build(\Exception $exception)
     {
         if ($exception instanceof GuzzleHttpRequestException) {
-            return ExceptionFactory::createClientException($exception);
+            return self::createClientException($exception);
         }
 
         return new ConohaAPIException('Conoha API Exception', 0, $exception);
