@@ -28,7 +28,7 @@ Identity Service          | Done! You can use it.
 Account Service           | Done! You can use it.
 Compute Service           | Not yet.
 Block Storage Service     | Not yet.
-Image Service             | Not yet.
+Image Service             | Done! You can use it.
 Network Service           | Not yet.
 Object Storage Service    | Not yet.
 Database Hosting Service  | Not yet.
